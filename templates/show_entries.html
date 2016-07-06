@@ -1,0 +1,73 @@
+{% extends "layout.html" %} {% block body %}
+<form action="{{ url_for('show_result') }}" method="post" class="add-entry">
+  <dl>
+    <dt>Enter a Keyword:
+      <br> <br/>
+      <dt><input type="text" size="90" name="keyword" value='{{keyword}}'>
+        <br> <br/>
+        <dt><input type="submit" value="Search Relevant Keywords">
+  </dl>
+</form>
+<ul class="entries">
+  {% if error %}
+  <p><strong>{{error}}</strong></p>
+  {% endif %} 
+  <!--Relevance keywords from titles-->
+  {% if title_keywords %}
+  <p>
+    <strong>Relevance keywords from search results' titles:</strong>
+    <table id="titlekey">
+      <tr>
+        <th>Word</th>
+        <th>Relevance</th>
+      </tr>
+
+      {% for kw in title_keywords %}
+      <tr>
+        <td>{{kw.word}}</td>
+        <td>{{kw.score}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </p>
+  {% endif %}
+  <!--Relevance keywords from description-->
+  {% if des_keywords %}
+  <p>
+    <strong>Relevance keywords from search results' description:</strong>
+    <table id="deskey">
+      <tr>
+        <th>Word</th>
+        <th>Relevance</th>
+      </tr>
+
+      {% for kw in des_keywords %}
+      <tr>
+        <td>{{kw.word}}</td>
+        <td>{{kw.score}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </p>
+  {% endif %}
+  <!--Relevance keywords from contents-->
+  {% if content_keywords %}
+  <p>
+    <strong>Relevance keywords from search results' contents:</strong>
+    <table id="conkey">
+      <tr>
+        <th>Word</th>
+        <th>Relevance</th>
+      </tr>
+
+      {% for kw in content_keywords %}
+      <tr>
+        <td>{{kw.word}}</td>
+        <td>{{kw.score}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </p>
+  {% endif %}
+</ul>
+{% endblock %}
