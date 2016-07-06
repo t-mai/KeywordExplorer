@@ -1,0 +1,7 @@
+/ Co-Occurrence Analysis Tool /
+
+A prototype of the tool. This version has a minimal functionality, showing the idea how the tool works.
+
+This tool is built with python and flask.
+
+This tool use Word2vec technology to analyse corpuses.
